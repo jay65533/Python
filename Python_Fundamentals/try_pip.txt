@@ -1,0 +1,9 @@
+pip install Django==1.11.9 : installs Django in the folder specified
+pip list : shows the installed packages, such as Django, pip, pytz,setuptools,wheels in the folder specified.
+deactivate : deactivates the virtualenv
+pip3 list: shows all the packages that are installed
+pip install Django==1.11.9: since it is already installed, it says that the requirement is already satisfied.
+pip freeze: outputs installed programs in requirements format
+pip uninstall Django: Uninstalls Django and all its files.
+pip show Django: shows nothing since it cannot be found since we uninstalled it.
+pip search Flask: finds all the Flask packages
