@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script>
+            window.onload = function () {
+            
+            var options = {
+                title: {
+                    text: "Number of Leads"
+                },
+                
+                animationEnabled: true,
+                data: [{
+                    type: "pie",
+                    startAngle: 40,
+                    toolTipContent: "<b>{label}</b>: {y}",
+                    showInLegend: "true",
+                    legendText: "{label}",
+                    indexLabelFontSize: 16,
+                    indexLabel: "{label} - {y}",
+                    dataPoints: [
+                        {% for j in leads2: %}
+                        { y: {{j['COUNT(leads.leads_id)']}}, label: "{{j['first_name']}}" },
+                        {% endfor %}
+                    ]
+                }]
+            };
+            $("#chartContainer").CanvasJSChart(options);
+            
+            }
+    </script>
+</head>
+<body>
+
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Number of Leads</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in leads %}    
+          <tr>
+            
+            <td>{{i['first_name']}}</td>
+            <td>{{i['last_name']}}</td>
+            <td>{{i['COUNT(leads.leads_id)']}}</td>
+            
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div id="chartContainer" style="height: 300px; width: 100%;"></div>   
+
+</body>
+</html>
