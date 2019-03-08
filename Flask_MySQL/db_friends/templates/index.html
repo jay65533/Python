@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>These are all my friends!</h1>
+    {% for i in friends %}
+        <p>First Name: {{i['first_name']}}</p>
+        <p>Last Name: {{i['last_name']}}</p>
+        <p>Occupation: {{i['occupation']}}</p>
+        <hr>
+    {% endfor %}
+    <form action = '/update' method = 'post'>
+        First Name: <input type = 'text' name = 'first_name'>
+        Last Name: <input type = 'text' name = 'last_name'>
+        Occupation: <input type = 'text' name = 'occupation'>
+        <button type = 'submit'>Submit</button>
+    
+    </form>
+    
+</body>
+</html>
