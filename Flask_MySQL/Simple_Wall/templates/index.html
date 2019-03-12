@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login/Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            
+        }
+
+        .container{
+            width: 500px;
+            background-color: black;
+            color: white;
+            height: 620px;
+            margin-top: 50px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-left: 50px;
+            border: solid 5px blue;
+            vertical-align: top;
+        }
+
+        .container2{
+            width: 500px;
+            background-color: black;
+            color: white;
+            height: 330px;
+            vertical-align: top;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 50px;
+            margin-left: 250px;
+            padding: 15px;
+            border: solid 5px green;
+        }
+
+        .container button{
+            margin-left: 190px;
+        }
+
+        .container2 button{
+            margin-left: 200px;
+            margin-top: -5px;
+        }
+        p{
+            height: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class = "container">
+        <h1>Register Here!</h1>
+        <form action='/register' method='post'>
+            <div class="form1-group">
+                <label for="exampleInputEmail1">First Name:</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name" name = "reg_first_name">
+                {% with errors = get_flashed_messages(category_filter=["reg_first_name"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <p style = "color: red" class="error">{{ msg }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p></p>
+                {% endif %}
+                {% endwith %}
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleInputEmail1">Last Name:</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name" name = "reg_last_name">
+                {% with errors = get_flashed_messages(category_filter=["reg_last_name"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <p style = "color: red" class="error">{{ msg }}</p>
+                    {% endfor %}
+                    {% else %}
+                    <p></p>
+                {% endif %}
+                {% endwith %}
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address:</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name = "reg_email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                {% with errors = get_flashed_messages(category_filter=["reg_email"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <p  style = "color: red" class="error">{{ msg }}</p>
+                    {% endfor %}
+                    {% else %}
+                    <p></p>
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password:</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name = "reg_password">
+                {% with errors = get_flashed_messages(category_filter=["reg_password"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <p  style = "color: red" class="error">{{ msg }}</p>
+                    {% endfor %}
+                    {% else %}
+                    <p></p>
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Confirm Password:</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name = "reg_confirm">
+                {% with errors = get_flashed_messages(category_filter=["reg_confirm"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <p  style = "color: red" class="error">{{ msg }}</p>
+                    {% endfor %}
+                    {% else %}
+                    <p></p>
+                {% endif %}
+                {% endwith %}
+            </div>
+            <button type="submit" class="btn btn-primary" name = "reg_submit">Register</button>
+        </form>
+        
+    </div>
+
+    <div class = "container2">
+        <form action='/register' method='post'>
+            <h1>Log In Here!</h1>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address:</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name = "log_email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password:</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name = "log_password">
+                {% with errors = get_flashed_messages(category_filter=["log_password"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <p  style = "color: red" class="error">{{ msg }}</p>
+                    {% endfor %}
+                    {% else %}
+                    <p></p>
+                {% endif %}
+                {% endwith %}
+            </div>
+            <button type="submit" class="btn btn-primary" name = "login_submit">Log In</button>
+        </form>            
+    </div>
+</body>
+</html>

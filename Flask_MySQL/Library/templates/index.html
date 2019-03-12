@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Book List</h1> 
+        <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Book ID</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Description</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                  {% for book in books %}
+                  <tr>
+                    <td class = "table-primary">{{book['id']}}</td>
+                    <td class = "table-success">{{book['name']}}</td>
+                    <td class = "table-info">{{book['description']}}</td>
+                    <td class = "table-warning"><form action='/edit' method = 'post'> 
+                            <button type='submit' value="{{book['id']}}" name ="edit" >Edit</button>
+                        </form>
+                    </td>
+                    <td class = "table-danger"><form action='/delete' method = "post">
+                            <button type='submit' value="{{book['id']}}" name = "del" >Delete</button>
+                        </form>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+              <form action='/add' >
+                <button type='submit' value="Submit" class="btn btn-dark">Add Book</button>
+              </form>
+                
+
+
+
+
+
+
+
+
+    </div>  
+</body>
+</html>
