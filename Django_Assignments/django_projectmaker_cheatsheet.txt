@@ -1,0 +1,64 @@
+C:\Users\j\Desktop>cd Python
+
+C:\Users\j\Desktop\Python>cd myEnvironments
+
+C:\Users\j\Desktop\Python\myEnvironments>call djangoPy3Env/Scripts/activate
+
+(djangoPy3Env) C:\Users\j\Desktop\Python>mkdir likes_books
+
+(djangoPy3Env) C:\Users\j\Desktop\Python>cd likes_books
+
+(djangoPy3Env) C:\Users\j\Desktop\Python\likes_books>django-admin startproject main
+
+(djangoPy3Env) C:\Users\j\Desktop\Python\likes_books>cd main
+
+(djangoPy3Env) C:\Users\j\Desktop\Python\likes_books\main>mkdir apps
+
+(djangoPy3Env) C:\Users\j\Desktop\Python\likes_books\main>cd apps
+
+(djangoPy3Env) C:\Users\j\Desktop\Python\likes_books\main\apps>nul> __init__.py (touch __init__.py)
+Access is denied.
+
+(djangoPy3Env) C:\Users\jayn2\Desktop\Python\likes_books\main\apps>python ../manage.py startapp likes_books
+
+Make the following changes:
+	1. in main --> urls.py
+		1. import include
+		2. change the url in urlpatterns to: url(r'^', include('apps.<project_name>.urls'))
+	2. in main --> settings.py
+		1. add 'apps.<project_name>', in INSTALLED_APPS
+	3. in main --> apps --> <project_name>
+		1. make a urls.py file
+		2. make a templates folder
+		3. in the templates folder make a new folder with the <project_name>
+		4. make index.html in the folder from above
+		5. in urls.py put in: 
+			from django.conf.urls import url
+			from . import views
+
+			urlpatterns = [
+    				url(r'^$', views.index)
+			]
+		6. in views.py put in:
+			from django.shortcuts import render, HttpResponse, redirect
+
+			# Create your views here.
+
+			def index(request):
+    				response = "Hello"
+    				return HttpResponse(response)
+ORM STUFF:
+from __future__ import unicode_literals
+from django.db import models
+
+# Create your models here.
+# Inside models.py
+
+class User(models.Model):
+	first_name = models.CharField(max_length=255)
+	last_name = models.CharField(max_length=255)
+	email = models.CharField(max_length=255)
+	created_at = models.DateTimeField(auto_now_add = True)
+	updated_at = models.DateTimeField(auto_now = True)
+	def __repr__(self):
+        	return "<User object: {} {} {}>".format(self.first_name, self.last_name, self.email)
