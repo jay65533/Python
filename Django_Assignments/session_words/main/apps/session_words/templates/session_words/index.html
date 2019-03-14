@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="process/" method="post">
+        {% csrf_token %} 
+        <h1>Add a new Word!</h1>
+        <label for="word">Add a word:</label>
+        <input type="text" id="word" name="word" placeholder="new word"><br>
+        <label for="color">Choose Color:</label><br>
+        <input type="radio" name="color" value="red"> Red<br>
+        <input type="radio" name="color" value="green"> Green<br>
+        <input type="radio" name="color" value="blue"> Blue <br>
+        <input type="hidden" name="big_font" value="0">
+        <input type="checkbox" name="big_font" value="1">show in BIG fonts<br>
+        <button type="submit">Submit</button> 
+    </form>
+
+    {% for item in request.session.words reversed %}
+        {% if item.showbig == "1" %}
+            <div style = "color:{{item.color}}; font-size: x-large"> {{item.word}} </div>  - added on {{item.datetime}} 
+        {% else %}
+        <div style = "color:{{item.color}}"> {{item.word}} </div>  - added on {{item.datetime}} 
+        {% endif %}
+    {% endfor %}
+
+    <form action="goback/" method="post">
+        {% csrf_token %}
+        <button type="submit">Clear Session</button>
+    </form>
+      
+</body>
+</html>

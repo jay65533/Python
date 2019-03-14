@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{% if messsage.tags %} 
+            class = "{{ message.tags }}"
+            {% endif %}
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h1>Add A New Courses</h1>
+    <form action='create/' method='post'>
+        {% csrf_token %}
+        <label>Name:
+            <input type="text" name="name">
+        </label>
+        <label>Description:
+            <input type="text" name="description">
+        </label>
+        <button type="submit">Add</button>
+    </form>
+
+    <table>
+        <thead>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for i in courses %}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.course_id.desc}}</td>
+                <td>{{i.created_at}}</td>
+                <td>
+                    <a href ="courses/destroy/{{i.id}}/">remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
