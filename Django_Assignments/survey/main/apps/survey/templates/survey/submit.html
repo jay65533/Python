@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to your dashboard</h1>
+    Your Name: {{request.session.name}}<br>
+    
+    Your Location: {{request.session.location}}<br>
+    Your Favorite Language: {{request.session.languages}}<br>
+    Your comment: {{request.session.comment}}<br>
+    
+    <form action="goback/" method="post">
+        {% csrf_token %}
+        <button type="submit">Go Back</button>
+    </form>
+   
+
+</body>
+</html>

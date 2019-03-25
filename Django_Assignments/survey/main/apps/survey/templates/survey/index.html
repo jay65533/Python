@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="process/" method="post">
+        {% csrf_token %} 
+        <h1>Dojo Survey</h1>
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" placeholder="your name"><br>
+        <label for="location">Dojo Location:</label>
+            <select name = 'location'>
+                {% for i in cities %}
+                    <option name = "{{i}}">{{i}}</option>
+                {% endfor %}
+            </select><br/>
+        <label for="languages">Favorite Language:</label>
+            <select name = 'languages'>
+                {% for i in languages %}
+                    <option name = "{{i}}">{{i}}</option>
+                {% endfor %}
+            </select><br/>
+        <label for="desc">Comment:</label><br>        
+        <textarea id="desc" name="desc" placeholder="description"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+      
+</body>
+</html>
